@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
+import { LoremIpsum } from 'lorem-ipsum';
 import { Chapter } from './reactComponentLib';
 
 class App extends Component {
   render() {
+    const lorem = new LoremIpsum({});
     return (
       <div>
-        <Chapter title="Hello, world"> Test</Chapter>
+        <Chapter title="Hello, world">
+          <p>{lorem.generateWords(32)}</p>
+          <p>{lorem.generateWords(32)}</p>
+        </Chapter>
       </div>
     );
   }

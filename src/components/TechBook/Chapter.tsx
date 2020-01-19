@@ -9,7 +9,9 @@ export interface ChapterProps {
   title: string;
 }
 
+/** Component to wrap a complete chapter of the technical document. */
 function Chapter(props: ChapterProps) {
+  // Assign chapter number: on first call, then persists
   const numberer: Numberer = props.numberer ? props.numberer : DefaultNumberer;
   const numberContainer = React.useRef<ItemNumber>(numberer.makeChapterNumber(props.title));
 
