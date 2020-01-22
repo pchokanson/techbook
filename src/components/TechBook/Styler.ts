@@ -18,6 +18,16 @@ export class Styler {
       bodyStyle: {} as React.CSSProperties,
     };
   }
+  makeSectionStyle(): ItemStyle {
+    return {
+      numberStyle: {} as React.CSSProperties,
+      titleStyle: {
+        color: colorScheme[2],
+        fontSize: 14,
+      } as React.CSSProperties,
+      bodyStyle: {} as React.CSSProperties,
+    };
+  }
 }
 
 export const DefaultStyler: Styler = new Styler();

@@ -8,6 +8,8 @@ import { TechBookState, TechBookContext } from './TechBook';
 export interface BookProps {
   title: string;
   children: React.ReactNode;
+
+  indexer?: Indexer;
 }
 
 function Book(props: BookProps) {
@@ -16,7 +18,7 @@ function Book(props: BookProps) {
     <TechBookContext.Provider
       value={
         {
-          indexer: new Indexer(index, setIndex),
+          indexer: props.indexer ? props.indexer : new Indexer(index, setIndex),
           styler: DefaultStyler,
           numberer: new Numberer(),
         } as TechBookState

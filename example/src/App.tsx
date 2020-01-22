@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { LoremIpsum } from 'lorem-ipsum';
-import { Book, Chapter, TableOfContents } from './reactComponentLib';
+import { Section, Book, Chapter, TableOfContents } from './reactComponentLib';
 
 class App extends Component {
   render() {
@@ -11,16 +11,25 @@ class App extends Component {
         <Book title="Hello, World!">
           <TableOfContents />
           <Chapter title={lorem.generateWords(4)}>
-            <p>{lorem.generateWords(32)}</p>
-            <p>{lorem.generateWords(32)}</p>
+            <p>{lorem.generateSentences(4)}</p>
+            <p>{lorem.generateSentences(4)}</p>
           </Chapter>
           <Chapter title={lorem.generateWords(4)}>
-            <p>{lorem.generateWords(32)}</p>
-            <p>{lorem.generateWords(32)}</p>
+            <p>{lorem.generateSentences(4)}</p>
+            <p>{lorem.generateSentences(4)}</p>
+            <Section title={lorem.generateWords(4)}>
+              <p>{lorem.generateSentences(4)}</p>
+            </Section>
+            <Section title={lorem.generateWords(4)}>
+              <p>{lorem.generateSentences(4)}</p>
+            </Section>
           </Chapter>
           <Chapter title={lorem.generateWords(4)}>
-            <p>{lorem.generateWords(32)}</p>
-            <p>{lorem.generateWords(32)}</p>
+            <p>{lorem.generateSentences(4)}</p>
+            <p>{lorem.generateSentences(4)}</p>
+            <Section title={lorem.generateWords(4)}>
+              <p>{lorem.generateSentences(4)}</p>
+            </Section>
           </Chapter>
         </Book>
       </div>
