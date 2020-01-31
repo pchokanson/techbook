@@ -28,6 +28,15 @@ export class Styler {
       bodyStyle: {} as React.CSSProperties,
     };
   }
+  makeVolumeStyle(): ItemStyle {
+    return {
+      numberStyle: {} as React.CSSProperties,
+      titleStyle: {
+        color: colorScheme[0],
+      } as React.CSSProperties,
+      bodyStyle: {} as React.CSSProperties,
+    };
+  }
 }
 
 export const DefaultStyler: Styler = new Styler();
