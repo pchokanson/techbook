@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ItemNumber } from './Numberer';
+import RawNumber from './RawNumber';
 import { TechBookContext } from './TechBook';
 
 export interface ChapterProps {
@@ -19,7 +20,7 @@ function Chapter(props: ChapterProps) {
   // Assign chapter number: on first call, then persists
   const numberContainer = React.useRef<ItemNumber>(context.numberer.makeChapterNumber(props.title));
 
-  const id = props.id ? props.id : '#ch' + numberContainer.current.chapterNumber;
+  const id = props.id ? props.id : 'ch' + numberContainer.current.chapterNumber;
   const style = context.styler.makeChapterStyle();
 
   // Register with index: run exactly once
@@ -36,7 +37,7 @@ function Chapter(props: ChapterProps) {
     <div style={style.bodyStyle}>
       <h1 id={id} style={style.titleStyle}>
         <span style={style.numberStyle}>
-          {numberContainer.current.id && numberContainer.current.chapterNumber}. &nbsp;
+          <RawNumber {...numberContainer.current} /> &nbsp;
         </span>
         {props.title}
         <a href="#toc">&uarr;</a>
