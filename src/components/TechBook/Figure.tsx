@@ -2,7 +2,6 @@ import React from 'react';
 
 import { ItemNumber } from './Numberer';
 import { TechBookContext } from './TechBook';
-import RawNumber from './RawNumber';
 
 export interface FigureProps {
   children?: React.ReactNode;
@@ -21,13 +20,12 @@ function Figure(props: FigureProps) {
 
   const id = props.id
     ? props.id
-    : 'fig' +
+    : 'figure' +
       numberContainer.current.volumeNumber +
       '.' +
       numberContainer.current.chapterNumber +
       '-' +
       numberContainer.current.figureNumber;
-  const style = context.styler.makeFigureStyle();
 
   // Register with index: run exactly once
   React.useEffect(() => {
@@ -39,16 +37,13 @@ function Figure(props: FigureProps) {
     });
   }, []);
 
-  return (
-    <div style={style.bodyStyle}>
-      <span style={style.numberStyle}>
-        FIG:
-        <RawNumber {...numberContainer.current} />
-      </span>
-      <span style={style.titleStyle}>{props.title}</span>
-      {props.children}
-    </div>
-  );
+  return context.componentStyler.styledFigureComponent({
+    number: numberContainer.current,
+    title: props.title,
+    caption: props.caption,
+    children: props.children,
+    id: id,
+  });
 }
 
 export default Figure;

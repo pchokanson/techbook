@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import { LoremIpsum } from 'lorem-ipsum';
-import { Volume, Section, Book, Chapter, Figure, TableOfContents, Table } from './reactComponentLib';
+import { Volume, Section, Book, Chapter, Figure, TableOfContents, Table, BasicStyle } from './reactComponentLib';
 
 class App extends Component {
   render() {
     const lorem = new LoremIpsum({});
     return (
       <div>
-        <Book title="Hello, World!">
+        <Book title="Hello, World!" styler={new BasicStyle()}>
           <TableOfContents />
           <Volume title={lorem.generateWords(8)}>
             <Chapter title={lorem.generateWords(4)}>

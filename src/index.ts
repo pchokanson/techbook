@@ -5,5 +5,6 @@ import Book from './components/TechBook/Book';
 import Figure from './components/TechBook/Figure';
 import Table from './components/TechBook/Table';
 import TableOfContents from './components/TechBook/TableOfContents';
+import BasicStyle from './components/TechBook/styles/BasicStyle';
 
-export { Section, Book, Chapter, Volume, TableOfContents, Figure, Table };
+export { Section, Book, Chapter, Volume, TableOfContents, Figure, Table, BasicStyle };

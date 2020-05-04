@@ -2,7 +2,6 @@ import React from 'react';
 
 import { ItemNumber } from './Numberer';
 import { TechBookContext } from './TechBook';
-import RawNumber from './RawNumber';
 
 export interface TableProps {
   children?: React.ReactNode;
@@ -27,7 +26,6 @@ function Table(props: TableProps) {
       numberContainer.current.chapterNumber +
       '-' +
       numberContainer.current.tableNumber;
-  const style = context.styler.makeTableStyle();
 
   // Register with index: run exactly once
   React.useEffect(() => {
@@ -39,16 +37,13 @@ function Table(props: TableProps) {
     });
   }, []);
 
-  return (
-    <div style={style.bodyStyle}>
-      <span style={style.numberStyle}>
-        TABLE:
-        <RawNumber {...numberContainer.current} />
-      </span>
-      <span style={style.titleStyle}>{props.title}</span>
-      {props.children}
-    </div>
-  );
+  return context.componentStyler.styledTableComponent({
+    number: numberContainer.current,
+    title: props.title,
+    caption: props.caption,
+    children: props.children,
+    id: id,
+  });
 }
 
 export default Table;

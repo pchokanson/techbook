@@ -2,7 +2,6 @@ import React from 'react';
 
 import { ItemNumber } from './Numberer';
 import { TechBookContext } from './TechBook';
-import RawNumber from './RawNumber';
 
 export interface SectionProps {
   title: string;
@@ -23,7 +22,6 @@ function Section(props: SectionProps) {
   const id = props.id
     ? props.id
     : 'ch' + [numberContainer.current.chapterNumber, numberContainer.current.sectionNumber].join('.');
-  const style = context.styler.makeSectionStyle();
 
   // Register with index: run exactly once
   React.useEffect(() => {
@@ -35,18 +33,12 @@ function Section(props: SectionProps) {
     });
   }, []);
 
-  return (
-    <div style={style.bodyStyle}>
-      <h1 id={id} style={style.titleStyle}>
-        <span style={style.numberStyle}>
-          <RawNumber {...numberContainer.current} /> &nbsp;
-        </span>
-        {props.title}
-        <a href="#toc">&uarr;</a>
-      </h1>
-      {props.children}
-    </div>
-  );
+  return context.componentStyler.styledSectionComponent({
+    number: numberContainer.current,
+    title: props.title,
+    children: props.children,
+    id: id,
+  });
 }
 
 export default Section;

@@ -2,7 +2,6 @@ import React from 'react';
 
 import { ItemNumber } from './Numberer';
 import { TechBookContext } from './TechBook';
-import RawNumber from './RawNumber';
 
 export interface VolumeProps {
   title: string;
@@ -21,7 +20,6 @@ function Volume(props: VolumeProps) {
   const numberContainer = React.useRef<ItemNumber>(context.numberer.makeVolumeNumber(props.title));
 
   const id = props.id ? props.id : 'vol' + numberContainer.current.volumeNumber;
-  const style = context.styler.makeVolumeStyle();
 
   // Register with index: run exactly once
   React.useEffect(() => {
@@ -33,18 +31,12 @@ function Volume(props: VolumeProps) {
     });
   }, []);
 
-  return (
-    <div style={style.bodyStyle}>
-      <h1 id={id} style={style.titleStyle}>
-        <span style={style.numberStyle}>
-          <RawNumber {...numberContainer.current} /> &nbsp;
-        </span>
-        {props.title}
-        <a href="#toc">&uarr;</a>
-      </h1>
-      {props.children}
-    </div>
-  );
+  return context.componentStyler.styledVolumeComponent({
+    number: numberContainer.current,
+    title: props.title,
+    children: props.children,
+    id: id,
+  });
 }
 
 export default Volume;

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Indexer } from './Indexer';
-import { Styler } from './Styler';
+import { ComponentStyler } from './Styler';
 import { Numberer } from './Numberer';
 
 export interface TechBookState {
   indexer: Indexer;
-  styler: Styler;
+  componentStyler: ComponentStyler;
   numberer: Numberer;
 }
 
