@@ -166,7 +166,10 @@ export class Numberer {
 
   makeEquationNumber(): ItemNumber {
     this.itemCounter.equationNumber += 1;
-    return Object.assign(this.itemCounter);
+
+    const id: string = ['eq', this.itemCounter.equationNumber].join('-');
+
+    return { ...this.itemCounter, id: id };
   }
 
   // updateXRefs() {}

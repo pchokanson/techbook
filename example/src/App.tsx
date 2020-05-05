@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 
 import { LoremIpsum } from 'lorem-ipsum';
-import { Volume, Section, Book, Chapter, Figure, TableOfContents, Table, BasicStyle } from './reactComponentLib';
+import {
+  Volume,
+  Section,
+  Book,
+  Chapter,
+  Figure,
+  TableOfContents,
+  Table,
+  Equation,
+  BasicStyle,
+} from './reactComponentLib';
 
 class App extends Component {
   render() {
@@ -25,6 +35,7 @@ class App extends Component {
                 <Table title={lorem.generateWords(4)}></Table>
                 <Figure title={lorem.generateWords(4)}></Figure>
                 <Table title={lorem.generateWords(4)}></Table>
+                <Equation>My Equation</Equation>
                 <p>{lorem.generateSentences(4)}</p>
               </Section>
               <Section title={lorem.generateWords(4)}>

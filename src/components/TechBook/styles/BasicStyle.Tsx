@@ -2,19 +2,45 @@ import React from 'react';
 
 import {
   ComponentStyler,
-  StyledBookTitleProps,
+  StyledBookProps,
   StyledChapterProps,
   StyledVolumeProps,
   StyledSectionProps,
   StyledFigureProps,
   StyledTableProps,
+  StyledEquationProps,
 } from '../Styler';
 import RawNumber from './RawNumber';
 
 const colorScheme = ['#483c46', '#3c6e71', '#70ae6e', '#beee62', '#f4743b'];
 
+const blockStyleBase: React.CSSProperties = {
+  borderWidth: '0.5mm',
+  borderStyle: 'solid',
+  borderColor: colorScheme[0],
+  borderRadius: '2mm',
+  margin: '5mm',
+  paddingLeft: '5mm',
+  paddingRight: '5mm',
+  paddingBottom: '5mm',
+};
+
+const blockTitleStyleBase: React.CSSProperties = {
+  marginTop: '1mm',
+};
+
 export class BasicStyle implements ComponentStyler {
-  styledBookTitleComponent = (props: StyledBookTitleProps) => <h1>{props.title}</h1>;
+  styledBookComponent = (props: StyledBookProps) => (
+    <div
+      style={{
+        paddingLeft: '5mm',
+        paddingRight: '5mm',
+      }}
+    >
+      <h1 style={{ color: colorScheme[1] }}>{props.title}</h1>
+      {props.children}
+    </div>
+  );
 
   styledVolumeComponent = (props: StyledVolumeProps) => (
     <div>
@@ -49,14 +75,10 @@ export class BasicStyle implements ComponentStyler {
   styledFigureComponent = (props: StyledFigureProps) => (
     <div
       style={{
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        borderColor: colorScheme[0],
-        borderRadius: '5mm',
-        marginTop: '5mm',
+        ...blockStyleBase,
       }}
     >
-      <h4 id={props.id}>
+      <h4 id={props.id} style={{ ...blockTitleStyleBase }}>
         Figure <RawNumber {...props.number}></RawNumber> &nbsp;
         {props.title}
         <a href="#toc">&uarr;</a>
@@ -67,20 +89,24 @@ export class BasicStyle implements ComponentStyler {
   styledTableComponent = (props: StyledTableProps) => (
     <div
       style={{
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        borderColor: colorScheme[0],
-        borderRadius: '5mm',
-        marginTop: '5mm',
+        ...blockStyleBase,
       }}
     >
-      <h4 id={props.id}>
+      <h4 id={props.id} style={{ ...blockTitleStyleBase }}>
         Table <RawNumber {...props.number}></RawNumber> &nbsp;
         {props.title}
         <a href="#toc">&uarr;</a>
       </h4>
       {props.children}
       {props.caption && <div>{props.caption}</div>}
+    </div>
+  );
+  styledEquationComponent = (props: StyledEquationProps) => (
+    <div style={{ ...blockStyleBase }}>
+      <h4 id={props.id} style={{ ...blockTitleStyleBase }}>
+        Equation {props.number.equationNumber} &nbsp;
+      </h4>
+      {props.children}
     </div>
   );
 }

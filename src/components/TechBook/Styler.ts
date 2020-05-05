@@ -2,30 +2,42 @@ import React from 'react';
 
 import { ItemNumber } from './Numberer';
 
-export interface StyledComponentProps {
-  number: ItemNumber;
+/** Top-level book rendering interface */
+export interface StyledBookProps {
   title: string;
   children: React.ReactNode;
+}
+
+/** Common styled rendering interface for un-numbered block components */
+export interface StyledBlockProps {
+  children: React.ReactNode;
+}
+
+/** Common styled rendering interface for numbered components */
+export interface StyledDivisionProps extends StyledBlockProps {
+  number: ItemNumber;
+  title: string;
   id: string;
 }
 
-export interface StyledBookTitleProps {
-  title: string;
+export type StyledVolumeProps = StyledDivisionProps;
+export type StyledChapterProps = StyledDivisionProps;
+export type StyledSectionProps = StyledDivisionProps;
+
+export interface StyledComponentProps extends StyledBlockProps {
+  number: ItemNumber;
+  title?: string;
+  caption?: string;
+  id: string;
 }
 
-export type StyledVolumeProps = StyledComponentProps;
-export type StyledChapterProps = StyledComponentProps;
-export type StyledSectionProps = StyledComponentProps;
-export interface StyledFigureProps extends StyledComponentProps {
-  caption?: string;
-}
-export interface StyledTableProps extends StyledComponentProps {
-  caption?: string;
-}
+export type StyledFigureProps = StyledComponentProps;
+export type StyledTableProps = StyledComponentProps;
+export type StyledEquationProps = StyledComponentProps;
 
 /** Component styler class: provides raw rendering components */
 export interface ComponentStyler {
-  styledBookTitleComponent: React.FunctionComponent<StyledBookTitleProps>;
+  styledBookComponent: React.FunctionComponent<StyledBookProps>;
 
   styledVolumeComponent: React.FunctionComponent<StyledVolumeProps>;
   styledChapterComponent: React.FunctionComponent<StyledChapterProps>;
@@ -33,4 +45,5 @@ export interface ComponentStyler {
 
   styledFigureComponent: React.FunctionComponent<StyledFigureProps>;
   styledTableComponent: React.FunctionComponent<StyledTableProps>;
+  styledEquationComponent: React.FunctionComponent<StyledEquationProps>;
 }

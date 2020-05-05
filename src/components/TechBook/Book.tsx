@@ -28,10 +28,10 @@ function Book(props: BookProps) {
         } as TechBookState
       }
     >
-      <div>
-        {componentStyler.styledBookTitleComponent({ title: props.title })}
-        {props.children}
-      </div>
+      {componentStyler.styledBookComponent({
+        title: props.title,
+        children: props.children,
+      })}
     </TechBookContext.Provider>
   );
 }
