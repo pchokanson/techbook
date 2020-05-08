@@ -11,6 +11,7 @@ import {
   Table,
   Equation,
   BasicStyle,
+  XRef,
 } from './reactComponentLib';
 
 class App extends Component {
@@ -55,6 +56,14 @@ class App extends Component {
                 <p>{lorem.generateSentences(4)}</p>
                 <p>{lorem.generateSentences(4)}</p>
               </Section>
+            </Chapter>
+          </Volume>
+          <Volume title={lorem.generateWords(8)}>
+            <Chapter title={lorem.generateWords(8)} id="my-chapter-id">
+              <p>
+                Demonstration of a cross reference to <XRef target="my-chapter-id"></XRef>
+              </p>
+              <p>{lorem.generateSentences(4)}</p>
             </Chapter>
           </Volume>
         </Book>

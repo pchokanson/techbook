@@ -8,6 +8,12 @@ export interface StyledBookProps {
   children: React.ReactNode;
 }
 
+/** Common styled rendering interface for text segments: citations, cross
+ *  references */
+export interface StyledTextProps {
+  children: React.ReactNode;
+}
+
 /** Common styled rendering interface for un-numbered block components */
 export interface StyledBlockProps {
   children: React.ReactNode;
@@ -24,6 +30,7 @@ export type StyledVolumeProps = StyledDivisionProps;
 export type StyledChapterProps = StyledDivisionProps;
 export type StyledSectionProps = StyledDivisionProps;
 
+/** Common styled rendering interface for block components (figures, tables) */
 export interface StyledComponentProps extends StyledBlockProps {
   number: ItemNumber;
   title?: string;
