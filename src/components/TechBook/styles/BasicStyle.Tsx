@@ -14,12 +14,18 @@ import RawNumber from './RawNumber';
 
 const colorScheme = ['#483c46', '#3c6e71', '#70ae6e', '#beee62', '#f4743b'];
 
+const pageStyleBase: React.CSSProperties = {
+  paddingLeft: '5mm',
+  paddingRight: '5mm',
+};
+
 const blockStyleBase: React.CSSProperties = {
   borderWidth: '0.5mm',
   borderStyle: 'solid',
   borderColor: colorScheme[0],
   borderRadius: '2mm',
   margin: '5mm',
+  marginTop: '10mm',
   paddingLeft: '5mm',
   paddingRight: '5mm',
   paddingBottom: '5mm',
@@ -27,16 +33,12 @@ const blockStyleBase: React.CSSProperties = {
 
 const blockTitleStyleBase: React.CSSProperties = {
   marginTop: '1mm',
+  width: '100%',
 };
 
 export class BasicStyle implements ComponentStyler {
   styledBookComponent = (props: StyledBookProps) => (
-    <div
-      style={{
-        paddingLeft: '5mm',
-        paddingRight: '5mm',
-      }}
-    >
+    <div style={{ ...pageStyleBase }}>
       <h1 style={{ color: colorScheme[1] }}>{props.title}</h1>
       {props.children}
     </div>
